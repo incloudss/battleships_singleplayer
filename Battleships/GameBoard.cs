@@ -23,7 +23,7 @@ public class GameBoard
     }
     public bool AreAllShipsSunken => _ships.All(x => x.IsSunken);
     public string View => string.Join(Environment.NewLine, ViewLines());
-    public ShootResult ShootAt(Coordinates coords)
+    public ShotResult ShootAt(Coordinates coords)
     {
         if (_fieldsState.ContainsKey(coords))
             throw new ArgumentException("You already shot at those coordinates, please try another ones");
@@ -36,12 +36,12 @@ public class GameBoard
         if (hitShip == null)
         {
             _fieldsState.Add(coords, FieldState.Miss);
-            return ShootResult.Miss();
+            return ShotResult.Miss();
         }
 
         hitShip.MarkHit();
         _fieldsState.Add(coords, FieldState.Hit);
-        return ShootResult.Hit(hitShip.Name, hitShip.IsSunken);
+        return ShotResult.Hit(hitShip.Name, hitShip.IsSunken);
     }
 
     private bool IsOffBoard(Coordinates coords) =>

@@ -34,10 +34,10 @@ namespace Battleships
                 try
                 {
                     var coordinates = Coordinates.FromA1Notation(_userInputSelector());
-                    var shootResult = _gameBoard.ShootAt(coordinates);
-                    _displayLineAction((shootResult.WasHit ? "HIT! " : "MISS. ")
-                                       + shootResult.ShipName
-                                       + (shootResult.ShipSunken ? " Sunken!" : "")
+                    var shotResult = _gameBoard.ShootAt(coordinates);
+                    _displayLineAction((shotResult.WasHit ? "HIT! " : "MISS. ")
+                                       + shotResult.ShipName
+                                       + (shotResult.ShipSunken ? " Sunken!" : "")
                                        + " Press enter to get next shoot...");
                     _userInputSelector();
                 }
